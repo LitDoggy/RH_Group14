@@ -5,6 +5,8 @@ class City(models.Model):
     cName = models.CharField(max_length = 20)
     exist = models.BooleanField()
     
+    def __unicode__(self):
+        return self.cName
     
 class Hotel(models.Model):
     hName = models.CharField(max_length = 50)
@@ -12,17 +14,26 @@ class Hotel(models.Model):
     
     hCity = models.ForeignKey(City)
     
+    def __unicode__(self):
+        return self.hName
+    
 class Room(models.Model):
     rPrice = models.IntegerField()
     rNum = models.CharField(max_length = 20)
     exist = models.BooleanField()
     
     roomFromHotel = models.ForeignKey(Hotel)
+    
+    def __unicode__(self):
+        return self.rNum
 
 class Customer(models.Model):
     emailAdd = models.CharField(max_length = 30)
     fullName = models.CharField(max_length = 30)
     exist = models.BooleanField()
+    
+    def __unicode__(self):
+        return self.fullName
     
 class Reserve(models.Model):
     checkInTime = models.DateTimeField()
@@ -34,3 +45,5 @@ class Reserve(models.Model):
     reserver = models.ForeignKey(Customer)
     reserveRoom = models.ForeignKey(Room)
     
+    def __unicode__(self):
+        return self.reserver
