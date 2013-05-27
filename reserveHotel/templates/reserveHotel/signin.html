@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sign up</title>
+    <title>Sign in</title>
     {% load staticfiles %}
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="all" />
     <link href="{% static 'reserveHotel/css/style.css' %}" rel="stylesheet" media="all" />
@@ -14,15 +14,13 @@
       <form class="form-signup" action="{% url 'rh:searchHotel' %}"
 	    method="post">
 	{% csrf_token %}
-	<h2 class="form-signup-heading">Please sign up</h2>
+	<h2 class="form-signup-heading">Please sign in</h2>
 	<input type="text" class="input-block-level" placeholder="Email"
 	       name="email"/>
-	<input type="text" class="input-block-level" placeholder="User name"
-	       name="uname"/>
 	<input type="password" class="input-block-level" placeholder="Password"
 	       name="password"/>
-	<button type="submit" class="btn btn-middle btn-primary">Sign up</button>
-	Already have an account? <a href="{% url 'rh:login' %}" >Sign in</a>
+	<button type="submit" class="btn btn-middle btn-primary">Sign in</button>
+	Haven't an account? <a href="{% url 'rh:register' %}" >Sign up</a>	
       </form>
     </div>
   </body>
