@@ -26,3 +26,27 @@ function load_datepicker()
 	checkout.hide();
     }).data('datepicker');
 }
+
+function show_rooms()
+{
+    var count = $('#rooms').val();
+    $('.mytr').remove();
+    $('.btn').parent().parent().remove();
+    for (var i = 1; i <= count; i++) {
+	var str = '<tr class="mytr"><td>Room ' + i +
+	    ':</td><td>Adults: <select>';
+	for (var j = 1; j <= 5; j++) {
+	    str += '<option name="room' + i + '_adults">'
+		+ j + '</option>';
+	}
+	str += '</select></td><td>Children: <select>';
+	for (var j = 1; j <= 5; j++) {
+	    str += '<option name="room' + i + '_children">'
+		+ j + '</option>';
+	}
+	str += '</select></td></tr>';
+	$('#roomtb').append(str);
+    }
+    var str = '<tr><td></td><td></td><td><input type="submit" class="btn btn-large btn-primary" value="Continue" /></td></tr>';
+    $('#roomtb').append(str);
+}
