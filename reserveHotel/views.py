@@ -38,10 +38,17 @@ def search_hotel(request):
 
     return render(request, 'reserveHotel/searchHotel.html')
 
-def search_result(request, city_id):
-    city_id = City.objects.get(cName = request.POST['city']).id
-    print city_id
-    return render(request, 'reserveHotel/searchResult.html')
+def search_result(request):
+    city_name = City.objects.get(cName = request.POST['city']).cName
+    print city_name
+    checkin_date = request.POST['checkin']
+    checkout_date = request.POST['checkout']
+        
+    return render(request, 'reserveHotel/searchResult.html', 
+                            {'city_name': city_name, 
+                             'checkout_date': checkout_date, 
+                             'checkin_date': checkin_date}
+                  )
 
 def choose_room(request):
     return render(request, 'reserveHotel/chooseRoom.html')
