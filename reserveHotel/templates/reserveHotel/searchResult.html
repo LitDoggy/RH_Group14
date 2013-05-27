@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Choose Hotel</title>
+    {% load staticfiles %}
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="all" />
+    <link href="{% static 'bootstrap/css/datepicker.css' %}" rel="stylesheet" media="all" />
+    <link href="{% static 'reserveHotel/css/style.css' %}" rel="stylesheet" media="all" />
+  </head>
+  <body>
+    <div class="container">
+      {% if error_message %}
+      <p class="text-error"><strong>{{ error_message }}</strong></p>
+      {% endif %}
+      <h2>Choose Hotel</h2>
+      <table class="table">
+	<caption>Summary</caption>
+	<tr><td>City:</td><td></td></tr>
+	<tr><td>Check in:</td><td></td></tr>
+	<tr><td>Check out:</td><td></td></tr>
+      </table>
+      <button class="btn btn-inverse" type="button"
+	      onclick="location.href=''">
+	Search again
+      </button>
+      <table class="table table-bordered">
+      <caption>Search Results</caption>	
+	<thead><td>Name</td><td></td></thead>
+	<tbody>
+	</tbody>
+      </table>
+    </div>
+  </body>
+  <script src="{% static 'jquery-1.10.0.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap-datepicker.js' %}"></script>
+  <script src="{% static 'reserveHotel/js/script.js' %}"></script>
+<script type="text/javascript">
+  onload = load_datepicker();
+</script>
+</html>
