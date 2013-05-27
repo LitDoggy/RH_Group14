@@ -4,6 +4,7 @@
     <title>Search hotel</title>
     {% load staticfiles %}
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="all" />
+    <link href="{% static 'bootstrap/css/datepicker.css' %}" rel="stylesheet" media="all" />
     <link href="{% static 'reserveHotel/css/style.css' %}" rel="stylesheet" media="all" />
   </head>
   <body>
@@ -11,19 +12,26 @@
       {% if error_message %}
       <p class="text-error"><strong>{{ error_message }}</strong></p>
       {% endif %}
-      <form class="form-search" action="{%  %}"
+      <form class="form-search" action="{% url 'rh:searchResult' %}"
 	    method="post">
 	{% csrf_token %}
 	<h2 class="">Search Hotel</h2>
 	<input type="text" class="input-block-level" placeholder="City/Town"
 	       name="city"/>
-	<input type="password" class="input-block-level" placeholder="Password"
-	       name="password"/>
-	<button type="submit" class="btn btn-large-btn-primary">Sing in</button>
-	Haven't an account? <a href="{% %}" >Sign up</a>	
+	<input type="text" class="input-block-level" id="start"
+	       placeholder="Check in date" name="checkin" />
+	<input type="text" class="input-block-level" id="end"
+	       placeholder="Check out date" name="checkout" />
+	<button type="submit" class="btn btn-large btn-primary">Search</button>
+
       </form>
     </div>
   </body>
   <script src="{% static 'jquery-1.10.0.min.js' %}"></script>
   <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap-datepicker.js' %}"></script>
+  <script src="{% static 'reserveHotel/js/script.js' %}"></script>
+<script type="text/javascript">
+  onload = load_datepicker();
+</script>
 </html>
