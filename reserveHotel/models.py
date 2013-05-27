@@ -27,9 +27,11 @@ class Room(models.Model):
     def __unicode__(self):
         return self.rNum
 
-class Customer(models.Model):
+class User(models.Model):
     emailAdd = models.CharField(max_length = 30)
     fullName = models.CharField(max_length = 30)
+    password = models.CharField(max_length = 30)
+    
     exist = models.BooleanField()
     
     def __unicode__(self):
@@ -40,9 +42,12 @@ class Reserve(models.Model):
     checkOutTime = models.DateTimeField()
     adultNum = models.IntegerField()
     minorNum = models.IntegerField()
+    representive = models.CharField(max_length = 50)
+    repreMail = models.CharField(max_length = 100)
+    
     exist = models.BooleanField()
     
-    reserver = models.ForeignKey(Customer)
+    reserver = models.ForeignKey(User)
     reserveRoom = models.ForeignKey(Room)
     
     def __unicode__(self):
