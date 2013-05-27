@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign up</title>
+    {% load staticfiles %}
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="all" />
+    <link href="{% static 'reserveHotel/css/style.css' %}" rel="stylesheet" media="all" />
+  </head>
+  <body>
+    <div class="container">
+      <form class="form-signup">
+	<h2 class="form-signup-heading">Please sign up</h2>
+	<input type="text" class="input-block-level" placeholder="Email" />
+	<input type="text" class="input-block-level" placeholder="User name" />
+	<input type="password" class="input-block-level" placeholder="Password" />
+	<button type="submit" class="btn btn-large-btn-primary">Sing up</button>
+      </form>
+    </div>
+  </body>
+  <script src="{% static 'jquery-1.10.0.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</html>
