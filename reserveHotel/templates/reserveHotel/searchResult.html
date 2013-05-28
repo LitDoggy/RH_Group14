@@ -27,8 +27,12 @@
       <thead><td><b>Name</b></td><td></td></thead>
 	<tbody>
 	  {% for hotel in availableHotels %}
+	  <form action="{% url 'rh:chooseRoom' %}" method="post">
+	    {% csrf_token %}	    
+	    <input type="hidden" name="hotel_name" value="{{hotel.hName}}" />
 	  <tr><td>{{hotel.hName}}</td>
-	    <td><a href="{% url 'rh:chooseRoom' %}">Continue</a></td>
+	    <td><input type="submit" class="btn btn-middle"
+		       value="Continue" /></td>
 	  </tr>
 	  {% endfor %}
 	</tbody>
