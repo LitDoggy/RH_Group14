@@ -34,14 +34,15 @@ function show_rooms()
     $('.btn').parent().parent().remove();
     for (var i = 1; i <= count; i++) {
 	var str = '<tr class="mytr"><td>Room ' + i +
-	    ':</td><td>Adults: <select>';
+	    ':</td><td>Adults: <select name="room' + i + '_adults">';
 	for (var j = 1; j <= 5; j++) {
-	    str += '<option name="room' + i + '_adults">'
+	    str += '<option value="' + j + '">'
 		+ j + '</option>';
 	}
-	str += '</select></td><td>Children: <select>';
+	str += '</select></td><td>Children: ' +
+	    '<select name="room' + i + '_children">';
 	for (var j = 1; j <= 5; j++) {
-	    str += '<option name="room' + i + '_children">'
+	    str += '<option value="' + j + '">'
 		+ j + '</option>';
 	}
 	str += '</select></td></tr>';

@@ -15,7 +15,7 @@
       <table class="table">
 	<caption>Summary</caption>
 	<tr><td>Hotel name:</td><td>{{hotel_name}}</td></tr>
-	<tr><td>City:</td><td>{{hotel_name}}</td></tr>
+	<tr><td>City:</td><td>{{city_name}}</td></tr>
       </table>
 
       <form class="" action="{% url 'rh:roomConfirm' %}"
@@ -24,9 +24,9 @@
 	<table class="table" id="roomtb">
 	  <tr><td>Rooms:</td>
 	    <td>
-	      <select id="rooms" onchange="show_rooms()">
+	      <select id="rooms" name="count" onchange="show_rooms()">
 		{% for i in '012345'|make_list %}
-		<option name="count">{{i}}</option>
+		<option value="{{i}}">{{i}}</option>
 		{% endfor %}
 	      </select>
 	  </td></tr>
