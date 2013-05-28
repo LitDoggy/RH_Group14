@@ -17,20 +17,24 @@ def search_hotel(request):
     except:
         if(received_email == '' or received_pwd == ''):
             
-            return render(request, 'reserveHotel/signin.html')
+            return render(request, 'reserveHotel/signin.html', 
+                          {'error_message': "Sign in information not completed!"})
         else:
             try:
                 p = User.objects.get(emailAdd = received_email)
             except:
-                return render(request, 'reserveHotel/signin.html')
+                return render(request, 'reserveHotel/signin.html',
+                              {'error_message': "Incorrect email!"})
             else:
                 if(p.password == received_pwd):
                     return render(request, 'reserveHotel/searchHotel.html')
                 else:
-                    return render(request, 'reserveHotel/signin.html')
+                    return render(request, 'reserveHotel/signin.html',
+                                  {'error_message': 'Incorrect password'})
     
     if(received_email == '' or received_username == '' or received_pwd == ''):
-        return render(request, 'reserveHotel/signup.html')
+        return render(request, 'reserveHotel/signup.html',
+                      {'error_message': 'Sign up information not completed!'})
     
     User.objects.create(emailAdd = received_email,
                         fullName = received_username,
@@ -40,11 +44,20 @@ def search_hotel(request):
 
 def search_result(request):
     city_name = request.POST['city']
+
     #print city_name
     checkin_date = request.POST['checkin']
     checkout_date = request.POST['checkout']
-    
-    city = City.objects.get(cName = city_name).id
+    if(checkin_date == "" or checkout_date == "" or city_name == ""):
+        return render(request, 'reserveHotel/searchHotel.html', 
+                      {'error_message': "Information not completed"})
+    try:
+        city = City.objects.get(cName = city_name).id
+    except:
+        errorMsg = 'City \'' + city_name + '\' Does Not Exist!'
+        return render(request, 'reserveHotel/searchHotel.html',
+                      {'error_message': errorMsg})
+        
     hotelList = Hotel.objects.filter(hCity = city)
     print hotelList
     roomList = getRoomFromHotel(hotelList)
