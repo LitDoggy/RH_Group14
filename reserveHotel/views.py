@@ -3,6 +3,10 @@ from django.core.context_processors import request
 
 from reserveHotel.models import City, Hotel, Reserve, Room, User
 # Create your views here.
+choosed_city = "NULL"
+check_in_date = 1/1/1
+check_out_date = 1/1/1
+
 def register(request):
     return render(request, 'reserveHotel/signup.html')
 
@@ -43,37 +47,41 @@ def search_hotel(request):
     return render(request, 'reserveHotel/searchHotel.html')
 
 def search_result(request):
-    city_name = request.POST['city']
+    choosed_city = request.POST['city']
 
     #print city_name
-    checkin_date = request.POST['checkin']
-    checkout_date = request.POST['checkout']
-    if(checkin_date == "" or checkout_date == "" or city_name == ""):
+    check_in_date = request.POST['checkin']
+    check_out_date = request.POST['checkout']
+    if(check_in_date == "" or check_out_date == "" or choosed_city == ""):
         return render(request, 'reserveHotel/searchHotel.html', 
                       {'error_message': "Information not completed"})
     try:
-        city = City.objects.get(cName = city_name).id
+        city = City.objects.get(cName = choosed_city).id
     except:
-        errorMsg = 'City \'' + city_name + '\' Does Not Exist!'
+        errorMsg = 'City \'' + choosed_city + '\' Does Not Exist!'
         return render(request, 'reserveHotel/searchHotel.html',
                       {'error_message': errorMsg})
         
     hotelList = Hotel.objects.filter(hCity = city)
     print hotelList
     roomList = getRoomFromHotel(hotelList)
-    availableRoomList = siftRoom(checkin_date, checkout_date, roomList)
+    availableRoomList = siftRoom(check_in_date, check_out_date, roomList)
     availableHotelList = judgeHotelFromRoom(availableRoomList)
     print availableHotelList
     
     return render(request, 'reserveHotel/searchResult.html', 
-                            {'city_name': city_name, 
-                             'checkout_date': checkout_date, 
-                             'checkin_date': checkin_date,
+                            {'city_name': choosed_city, 
+                             'checkout_date': check_out_date, 
+                             'checkin_date': check_in_date,
                              'availableHotels': availableHotelList,}
                   )
 
 def choose_room(request):
-    return render(request, 'reserveHotel/chooseRoom.html')
+    choosed_hotel = request.POST['hotel_name']
+    print choosed_hotel
+    return render(request, 'reserveHotel/chooseRoom.html',
+                  {'hotel_name': choosed_hotel,
+                   'city_name': choosed_city})
 
 def room_confirm(request):
     return render(request, 'reserveHotel/roomConfirm.html')
