@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^chooseRoom/$', views.choose_room, name = 'chooseRoom'),
     url(r'^roomConfirm/$', views.room_confirm, name = 'roomConfirm'),
     url(r'^payment/$', views.payment, name = 'payment'),
+    url(r'^over/$', views.over, name = 'over'),
     
     url(r'^exception/$', views.exception, name = 'exception')
 )

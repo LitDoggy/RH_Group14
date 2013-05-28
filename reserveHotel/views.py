@@ -7,6 +7,8 @@ choosed_city = "NULL"
 check_in_date = 1/1/1
 check_out_date = 1/1/1
 
+roomNum = 0
+
 def register(request):
     return render(request, 'reserveHotel/signup.html')
 
@@ -47,6 +49,7 @@ def search_hotel(request):
     return render(request, 'reserveHotel/searchHotel.html')
 
 def search_result(request):
+    global choosed_city
     choosed_city = request.POST['city']
 
     #print city_name
@@ -79,15 +82,27 @@ def search_result(request):
 def choose_room(request):
     choosed_hotel = request.POST['hotel_name']
     print choosed_hotel
+    print choosed_city
     return render(request, 'reserveHotel/chooseRoom.html',
                   {'hotel_name': choosed_hotel,
                    'city_name': choosed_city})
 
 def room_confirm(request):
+    count = request.POST['count']
+    adults = request.POST['room1_adults']
+    children = request.POST['room1_children']
+    print adults
+    print children
+    print count
     return render(request, 'reserveHotel/roomConfirm.html')
 
 def payment(request):
+    roomCount = request.POST['count']
+    
     return render(request, 'reserveHotel/payment.html')
+
+def over(request):
+    return render(request, 'reserveHotel/over.html')
 
 def exception(request):
     return render(request, 'reserveHotel/exception.html')
