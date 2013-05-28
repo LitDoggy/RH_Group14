@@ -4,7 +4,6 @@
     <title>Choose Hotel</title>
     {% load staticfiles %}
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="all" />
-    <link href="{% static 'bootstrap/css/datepicker.css' %}" rel="stylesheet" media="all" />
     <link href="{% static 'reserveHotel/css/style.css' %}" rel="stylesheet" media="all" />
   </head>
   <body>
@@ -15,9 +14,9 @@
       <h2>Choose Hotel</h2>
       <table class="table">
 	<caption>Summary</caption>
-	<tr><td>City:</td><td>{{city_name}}</td></tr>
-	<tr><td>Check in:</td><td>{{checkin_date}}</td></tr>
-	<tr><td>Check out:</td><td>{{checkout_date}}</td></tr>
+	<tr><td><b>City:</b></td><td>{{city_name}}</td></tr>
+	<tr><td><b>Check in:</b></td><td>{{checkin_date}}</td></tr>
+	<tr><td><b>Check out:</b></td><td>{{checkout_date}}</td></tr>
       </table>
       <button class="btn btn-inverse" type="button"
 	      onclick="javascript:history.back();">
@@ -25,7 +24,7 @@
       </button>
       <table class="table table-bordered">
       <caption>Search Results</caption>	
-	<thead><td>Name</td><td></td></thead>
+      <thead><td><b>Name</b></td><td></td></thead>
 	<tbody>
 	  {% for hotel in availableHotels %}
 	  <tr><td>{{hotel.hName}}</td>
@@ -38,9 +37,4 @@
   </body>
   <script src="{% static 'jquery-1.10.0.min.js' %}"></script>
   <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'bootstrap/js/bootstrap-datepicker.js' %}"></script>
-  <script src="{% static 'reserveHotel/js/script.js' %}"></script>
-<script type="text/javascript">
-  onload = load_datepicker();
-</script>
 </html>
