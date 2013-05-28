@@ -97,7 +97,7 @@ def room_confirm(request):
     return render(request, 'reserveHotel/roomConfirm.html')
 
 def payment(request):
-    roomCount = request.POST['count']
+#    roomCount = request.POST['count']
     
     return render(request, 'reserveHotel/payment.html')
 
