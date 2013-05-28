@@ -20,13 +20,18 @@
 	<tr><td>Check out:</td><td>{{checkout_date}}</td></tr>
       </table>
       <button class="btn btn-inverse" type="button"
-	      onclick="location.href=''">
+	      onclick="javascript:history.back();">
 	Search again
       </button>
       <table class="table table-bordered">
       <caption>Search Results</caption>	
-	<thead><td>Name</td><td>{{availableHotels}}</td></thead>
+	<thead><td>Name</td><td></td></thead>
 	<tbody>
+	  {% for hotel in avaliableHotels %}
+	  <tr><td>{{hotel.hName}}</td>
+	    <td><a href="{% url 'rh:chooseRoom' %}">Continue</a></td>
+	  </tr>
+	  {% endfor %}
 	</tbody>
       </table>
     </div>
