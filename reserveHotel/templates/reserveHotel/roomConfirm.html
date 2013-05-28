@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Room Confirm</title>
+    {% load staticfiles %}
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="all" />
+    <link href="{% static 'reserveHotel/css/style.css' %}" rel="stylesheet" media="all" />
+  </head>
+  <body>
+    <div class="container">
+      {% if error_message %}
+      <p class="text-error"><strong>{{ error_message }}</strong></p>
+      {% endif %}
+      <h2>Room Confirm</h2>
+      <table class="table">
+	<caption>Summary</caption>
+	<tr><td>Hotel name:</td><td>{{hotel_name}}</td></tr>
+	<tr><td>City:</td><td>{{city_name}}</td></tr>
+	<tr><td>Check in:</td><td></td></tr>
+	<tr><td>Check out:</td><td></td></tr>
+	<tr><td>No. Rooms:</td><td></td></tr>
+	<tr><td>Total:</td><td></td></tr>
+      </table>
+
+      <form class="" action="{% url 'rh:payment' %}"
+	    method="post">
+	{% csrf_token %}
+	<table class="table">
+	  <caption>Personal information</caption>
+	  <tr><td>Full Name:</td>
+	    <td><input type="text" name="full_name" /></td>
+	  </tr>
+	  <tr><td>Email:</td>
+	    <td><input type="text" name="email" /></td>
+	  </tr>
+	  <tr><td></td>
+	    <td><input type="submit" class="btn btn-middle btn-primary"
+		       value="Continue" /></td>
+	  </tr>
+	</table>
+      </form>
+    </div>
+  </body>
+  <script src="{% static 'jquery-1.10.0.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</html>

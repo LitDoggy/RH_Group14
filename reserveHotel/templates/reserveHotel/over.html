@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Payment</title>
+    {% load staticfiles %}
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="all" />
+    <link href="{% static 'reserveHotel/css/style.css' %}" rel="stylesheet" media="all" />
+  </head>
+  <body>
+    <div class="container">
+      {% if error_message %}
+      <p class="text-error"><strong>{{ error_message }}</strong></p>
+      {% endif %}
+      <a class="btn btn-large btn-primary" href="{% url 'rh:searchHotel' %}">
+	Success!
+      </a>
+    </div>
+  </body>
+  <script src="{% static 'jquery-1.10.0.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</html>
