@@ -39,15 +39,24 @@ def search_hotel(request):
     return render(request, 'reserveHotel/searchHotel.html')
 
 def search_result(request):
-    city_name = City.objects.get(cName = request.POST['city']).cName
-    print city_name
+    city_name = request.POST['city']
+    #print city_name
     checkin_date = request.POST['checkin']
     checkout_date = request.POST['checkout']
-        
+    
+    city = City.objects.get(cName = city_name).id
+    hotelList = Hotel.objects.filter(hCity = city)
+    print hotelList
+    roomList = getRoomFromHotel(hotelList)
+    availableRoomList = siftRoom(checkin_date, checkout_date, roomList)
+    availableHotelList = judgeHotelFromRoom(availableRoomList)
+    print availableHotelList
+    
     return render(request, 'reserveHotel/searchResult.html', 
                             {'city_name': city_name, 
                              'checkout_date': checkout_date, 
-                             'checkin_date': checkin_date}
+                             'checkin_date': checkin_date,
+                             'availableHotels': availableHotelList,}
                   )
 
 def choose_room(request):
@@ -61,3 +70,37 @@ def payment(request):
 
 def exception(request):
     return render(request, 'reserveHotel/exception.html')
+
+def getRoomFromHotel(allHotel):
+    roomList = []
+    for hotel in allHotel:
+        for room in Room.objects.all():
+            if(room.roomFromHotel == hotel):
+                roomList.append(room)
+    
+    print roomList
+    return roomList
+
+def siftRoom(ei, eo, allRoom):
+    #siftedRoomList = []
+    allRecord = Reserve.objects.all()
+    
+    for record in allRecord:
+        if(record.reserveRoom in allRoom):
+            if((record.checkInTime >= ei and record.checkInTime < eo)
+                or (record.checkOutTime > ei and record.checkOutTime <= eo)):
+                allRoom.remove(record.reserveRoom)
+    
+    print allRoom
+    return allRoom
+
+def judgeHotelFromRoom(availableRoom):
+    availableHotel = []
+    print availableRoom
+    for room in availableRoom:
+        print room
+        if(room.roomFromHotel not in availableHotel):
+            availableHotel.append(room.roomFromHotel)
+    print availableHotel
+    return availableHotel
+    
