@@ -38,8 +38,8 @@ class User(models.Model):
         return self.fullName
     
 class Reserve(models.Model):
-    checkInTime = models.DateTimeField()
-    checkOutTime = models.DateTimeField()
+    checkInTime = models.DateField()
+    checkOutTime = models.DateField()
     adultNum = models.IntegerField()
     minorNum = models.IntegerField()
     representive = models.CharField(max_length = 50)

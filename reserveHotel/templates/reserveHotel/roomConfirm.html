@@ -16,10 +16,11 @@
 	<caption>Summary</caption>
 	<tr><td>Hotel name:</td><td>{{hotel_name}}</td></tr>
 	<tr><td>City:</td><td>{{city_name}}</td></tr>
-	<tr><td>Check in:</td><td></td></tr>
-	<tr><td>Check out:</td><td></td></tr>
-	<tr><td>No. Rooms:</td><td></td></tr>
-	<tr><td>Total:</td><td></td></tr>
+	<tr><td>Check in:</td><td>{{checkin_date}}</td></tr>
+	<tr><td>Check out:</td><td>{{checkout_date}}</td></tr>
+	<tr><td>No. Rooms:</td><td>{{room_num}}</td></tr>
+	<tr><td>Room Lists:</td><td>{{room_list}}</td></tr>
+	<tr><td>Total:</td><td>{{total_price}}</td></tr>
       </table>
 
       <form class="" action="{% url 'rh:payment' %}"
