@@ -19,8 +19,14 @@
 	<tr><td>Check in:</td><td>{{checkin_date}}</td></tr>
 	<tr><td>Check out:</td><td>{{checkout_date}}</td></tr>
 	<tr><td>No. Rooms:</td><td>{{room_num}}</td></tr>
-	<tr><td>Room Lists:</td><td>{{room_list}}</td></tr>
-	<tr><td>Total:</td><td>{{total_price}}</td></tr>
+	<tr><td>Room Lists:</td>
+	  <td>
+	    {% for room in room_list %}
+	    {{room.rNum}}:${{room.rPrice}},
+	    {% endfor %}
+	  </td>
+	</tr>
+	<tr><td>Total:</td><td>${{total_price}}</td></tr>
       </table>
 
       <form class="" action="{% url 'rh:payment' %}"

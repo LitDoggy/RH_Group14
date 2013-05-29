@@ -15,7 +15,14 @@
       <table class="table">
 	<caption>Summary</caption>
 	<tr><td>Items</td><td>Total</td></tr>
-	<tr><td>{{room_list}}</td><td>{{total_price}}</td></tr>
+	<tr>
+	  <td>
+	    {% for room in room_list %}
+	    {{room.rNum}}:${{room.rPrice}},
+	    {% endfor %}
+	  </td>
+	  <td>{{total_price}}</td>
+	</tr>
 	<tr><td><td><a href="{% url 'rh:over' %}">Pay!</a></td></tr>
       </table>
     </div>
